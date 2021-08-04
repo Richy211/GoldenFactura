@@ -8,7 +8,7 @@
 <body>
 	<?php include "includes/header.php";?>
 	<section id="container">
-		<h1>Bienvenido al sistema</h1>
+		<h1>Bienvenido al sistema de Cotización</h1>
 
 		
 	</section>
