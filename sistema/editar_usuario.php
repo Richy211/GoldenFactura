@@ -17,29 +17,48 @@
 			$clave  = md5($_POST['clave']);
 			$rol    = $_POST['rol'];
 
-			//imprimir en pantalla para probarlo en phpMyAdmin
-			// echo "SELECT * FROM usuario WHERE usuario = '$user' OR correo = '$email'";
-			$query = mysqli_query($conection,"SELECT * FROM usuario WHERE usuario = '$user' OR correo = '$email' ");
+			/* imprimimos para probarlo en el phpMyadmin el query */
+			/* echo "SELECT * FROM usuario WHERE(usuario = '$user' AND idusuario != $idusuario)
+											OR(correo = '$email' AND idusuario != $idusuario)";
+											exit; */
+			
+			
+
+	$query = mysqli_query($conection,"SELECT * FROM usuario
+							WHERE(usuario = '$user' AND idusuario != $idusuario)
+							OR (correo = '$email' AND idusuario != $idusuario ) " );
+
 			$result = mysqli_fetch_array($query);
 
 			if($result > 0){
 				$alert = '<p class="msg_error">El correo o el usuario ya existe.</p>';
 			}else{
 
-				$query_insert = mysqli_query($conection,"INSERT INTO usuario(nombre,correo,usuario,clave,rol)
-																values('$nombre','$email','$user','$clave','$rol')");
-				if($query_insert){
-					$alert='<p class="msg_save">Usuario creado correctamente.</p>';
+				if(empty($_POST['clave']))
+				{
+					$sql_update = mysqli_query($conection,"UPDATE usuario
+												SET nombre = '$nombre', correo='$email',usuario='$user',rol='$rol'
+												WHERE idusuario = $idusuario ");
+				}else{
+					$sql_update = mysqli_query($conection,"UPDATE usuario
+												SET nombre = '$nombre', correo='$email',usuario='$user',clave='$clave',rol='$rol'
+												WHERE idusuario = $idusuario ");
+				}
+
+
+				if($sql_update){
+					$alert='<p class="msg_save">Usuario editado correctamente.</p>';
 
 					// header('location:lista_usuario.php');
 
 				}else{
-					$alert='<p class="msg_error">Error al crear el usuario.</p>';
+					$alert='<p class="msg_error">Error al editar el usuario.</p>';
 				}
 			}
 
 		}
 	}
+
 
 /*Mostrar datos*/
 	if(empty($_GET['id']))
@@ -95,7 +114,7 @@
 	<?php include "includes/header.php";?>
 	<section id="container">
 		<div class="form_register">
-			<h1>Actualizar Usuario</h1>
+			<h1>Actualizar Usuario M</h1>
 			<hr>
 			<div class="alert"> <?php echo isset($alert) ? $alert :'';?> </div>
 
