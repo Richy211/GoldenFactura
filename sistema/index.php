@@ -8,7 +8,7 @@
 <body>
 	<?php include "includes/header.php";?>
 	<section id="container">
-		<h1>Sistema de Cotización y Factura</h1>
+		<h1>Cotización y Factura</h1>
 
 		
 	</section>
