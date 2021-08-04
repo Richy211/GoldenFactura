@@ -47,7 +47,7 @@
 
 
 				if($sql_update){
-					$alert='<p class="msg_save">Usuario editado correctamente.</p>';
+					$alert='<p class="msg_save">Usuario editado correctamente...</p>';
 
 					// header('location:lista_usuario.php');
 
