@@ -27,7 +27,7 @@
 <?php 
 
 	$query = mysqli_query($conection, "SELECT u.idusuario, u.nombre, u.correo, u.usuario, r.rol 
-						FROM usuario u INNER JOIN rol r ON u.rol = r.idrol WHERE estatus = 1 ");
+						FROM usuario u INNER JOIN rol r ON u.rol = r.idrol WHERE estatus = 1  ORDER BY idusuario DESC");
 
 	$result = mysqli_num_rows($query);
 	if($result > 0){
@@ -62,6 +62,20 @@
  ?>
 
 		</table>
+
+		<div class="paginador">
+			<ul>
+				<li><a href=""> |< </a> </li>
+				<li> <a href=""> << </a></li>
+				<li class="pageSelected"> 1 </a></li>
+				<li><a href=""> 2 </a></li>
+				<li><a href=""> 3 </a></li>
+				<li><a href=""> 4 </a></li>
+				<li><a href=""> 5 </a></li>
+				<li><a href=""> >> </a></li>
+				<li><a href=""> >| </a></li>
+			</ul>
+		</div>
 		
 	</section>
 </body>
