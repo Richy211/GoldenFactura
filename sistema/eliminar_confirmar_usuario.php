@@ -9,6 +9,7 @@ include "../conexion.php";
             exit;
         }
 
+
         $idusuario = $_POST['idusuario'];
 
         /*  $query_delete = mysqli_query($conection,"DELETE FROM usuario WHERE idusuario = $idusuario "); */
