@@ -27,7 +27,7 @@
 <?php 
 
 	$query = mysqli_query($conection, "SELECT u.idusuario, u.nombre, u.correo, u.usuario, r.rol 
-						FROM usuario u INNER JOIN rol r ON u.rol = r.idrol WHERE estatus = 1  ORDER BY idusuario DESC");
+						FROM usuario u INNER JOIN rol r ON u.rol = r.idrol WHERE estatus = 1  ORDER BY idusuario ASC");
 
 	$result = mysqli_num_rows($query);
 	if($result > 0){
