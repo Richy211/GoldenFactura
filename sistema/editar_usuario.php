@@ -1,5 +1,11 @@
 <?php 
 	
+	session_start();
+	if($_SESSION['rol'] != 1)
+	{
+		header("location; ./");
+	}
+	
 	include "../conexion.php";
 
 	if(!empty($_POST))
@@ -16,13 +22,7 @@
 			$user   = $_POST['usuario'];
 			$clave  = md5($_POST['clave']);
 			$rol    = $_POST['rol'];
-
-			/* imprimimos para probarlo en el phpMyadmin el query */
-			/* echo "SELECT * FROM usuario WHERE(usuario = '$user' AND idusuario != $idusuario)
-											OR(correo = '$email' AND idusuario != $idusuario)";
-											exit; */
-			
-			
+		
 
 	$query = mysqli_query($conection,"SELECT * FROM usuario
 							WHERE(usuario = '$user' AND idusuario != $idusuario)
@@ -57,6 +57,7 @@
 			}
 
 		}
+		mysqli_close($conection);
 	}
 
 
@@ -64,6 +65,7 @@
 	if(empty($_GET['id']))
 	{
 		header('Location: lista_usuario.php');
+		mysqli_close($conection);
 	}
 	$iduser = $_GET['id'];
 
@@ -75,6 +77,7 @@
 									ON u.rol = r.idrol 
 									WHERE idusuario= $iduser");
 
+	mysqli_close($conection);
 	$result_sql = mysqli_num_rows($sql);
 
 	if($result_sql == 0){
@@ -136,8 +139,9 @@
 				<label for="rol"> Tipo Usuario </label>
 
 				<?php 
-
+					include "../conexion.php";
 					$query_rol = mysqli_query($conection,"SELECT * FROM rol");
+					mysqli_close($conection);
 					$result_rol = mysqli_num_rows($query_rol);
 				 ?>
 

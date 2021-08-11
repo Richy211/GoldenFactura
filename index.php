@@ -21,6 +21,7 @@ if(!empty($_POST))
       /*  echo $pass; exit; */
 
        $query =  mysqli_query($conection, "SELECT * FROM usuario WHERE usuario= '$user' AND clave = '$pass'");
+       mysqli_close($conection);
        $result = mysqli_num_rows($query);
 
        if($result > 0)
