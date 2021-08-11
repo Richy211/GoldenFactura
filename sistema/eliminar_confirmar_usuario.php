@@ -1,4 +1,9 @@
 <?php
+session_start();
+if($_SESSION['rol'] != 1)
+{
+    header("location: ./");
+}
 
 include "../conexion.php";
 
@@ -6,6 +11,8 @@ include "../conexion.php";
     {
        /*  Esto es para que no eliminen al super admin a traves de injeccion de codigo */
         if($_POST['idusuario'] == 1){
+            header("location: lista_usuario.php");
+            mysqli_close($conection);
             exit;
         }
 
@@ -15,7 +22,7 @@ include "../conexion.php";
         /*  $query_delete = mysqli_query($conection,"DELETE FROM usuario WHERE idusuario = $idusuario "); */
 
         $query_delete = mysqli_query($conection,"UPDATE usuario SET estatus = 0 WHERE idusuario = $idusuario ");
-
+        mysqli_close($conection);
         if($query_delete){
             header("location: lista_usuario.php");
         }else{
@@ -28,6 +35,7 @@ include "../conexion.php";
     if(empty($_REQUEST['id'])  || $_REQUEST['id'] ==1)
     {
         header('location: lista_usuario.php');
+        mysqli_close($conection);
     }else{
         
 
@@ -38,6 +46,8 @@ include "../conexion.php";
                                          INNER JOIN rol r 
                                          ON u.rol = r.idrol 
                                          WHERE u.idusuario = $idusuario ");
+        
+        mysqli_close($conection);
         $result = mysqli_num_rows($query);
 
         if($result > 0){

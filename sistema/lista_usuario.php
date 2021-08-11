@@ -1,5 +1,14 @@
+<?php 
 
-<?php include "../conexion.php"; ?>
+session_start();
+	if($_SESSION['rol'] != 1)
+	{
+		header("location: ./");
+	}
+	
+include "../conexion.php"; 
+?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -54,6 +63,8 @@
 						ORDER BY u.idusuario 
 						ASC LIMIT $desde,$por_pagina ");
 
+	mysqli_close($conection);
+	
 	$result = mysqli_num_rows($query);
 	if($result > 0){
 
