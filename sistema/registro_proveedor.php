@@ -48,7 +48,7 @@ if(!empty($_POST))
 	
 	<?php include "includes/scripts.php"; ?>
 
-	<title>Registro Proveedor</title>
+	<title>Registro de Proveedores</title>
 </head>
 <body>
 			<?php include "includes/header.php";?>
