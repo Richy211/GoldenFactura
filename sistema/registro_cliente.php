@@ -65,7 +65,7 @@ var_dump($_POST);
 	<section id="container">
 
 		<div class="form_register">
-			<h1>Registro de Cliente</h1>
+			<h1>Registro Cliente</h1>
 			<hr>
 			<div class="alert"><p><?php echo isset($alert) ? $alert : ''; ?></p></div>
 
